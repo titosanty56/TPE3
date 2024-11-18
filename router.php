@@ -9,13 +9,13 @@
 
     $router->addMiddleware(new JWTAuthMiddleware());
 
-    $router->addRoute('aerolinea', 'GET', 'AerolineasApiController','getAllAerolineas');
+    $router->addRoute('aerolinea', 'GET', 'AerolineasApiController','getAerolineas');
     $router->addRoute('aerolinea/:id', 'GET', 'AerolineasApiController','getAerolinea');
     $router->addRoute('aerolinea/:id','DELETE', 'AerolineasApiController','delete');
     $router->addRoute('aerolinea','POST', 'AerolineasApiController','create');
     $router->addRoute('aerolinea/:id', 'PUT', 'AerolineasApiController', 'edit');
 
-    $router->addRoute('persona', 'GET', 'PersonasApiController','getAllPersona');
+    $router->addRoute('persona', 'GET', 'PersonasApiController','getAllPersonas');
     $router->addRoute('persona/:id', 'GET', 'PersonasApiController','getPersona');
     $router->addRoute('persona/:id','DELETE', 'PersonasApiController','delete');
     $router->addRoute('persona','POST', 'PersonasApiController','create');
