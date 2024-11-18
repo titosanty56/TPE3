@@ -13,9 +13,9 @@
 
         public function getAllAerolineas($req, $res){
             //Filtrado por nombre
-            $Nombre = false;
-            if(isset($req->query->nombre)){
-                $Nombre = $req->query->nombre;
+            $Pais = false;
+            if(isset($req->query->Pais)){
+                $Pais = $req->query->Pais;
             }
     
             $orderBy = false;
@@ -28,8 +28,23 @@
                 $Direction = $req->query->Direction;
             }
 
+            $pagina = false;
+            if(isset($req->query->pagina)){
+                if(is_numeric($req->query->pagina)){
+                    $pagina = $req->query->pagina;
+                }
+            }
+
+            $items = false;
+            if(isset($req->query->items)){
+                if(is_numeric($req->query->items)){
+                    $items = $req->query->items;
+                }
+            }
+        
+
             //traigo aerolineas a la db
-            $aerolineas = $this->model->getAerolineas($Nombre, $orderBy, $Direction);
+            $aerolineas = $this->model->getAerolineas($Nombre, $orderBy, $Direction, $pagina, $items);
 
             if(!$aerolineas){
                 return $this->view->response("No hay aerolineas para mostrar", 404);

@@ -7,12 +7,11 @@
         public function getPersonas($Cantidad = false, $orderBy = false, $Direction = false){
             $sql = 'SELECT * FROM `persona`';
 
-            //TP3-WEB2/api/persona?nombre=Personas Argentina
+            //TP3-WEB2/api/persona?cantidad=2
             if($Cantidad){
                 $sql .= " WHERE `cantidad` = ?";
             }
 
-            //TP3-WEB2/api/persona?orderBy=cantidad
             if($orderBy){
                 switch($orderBy){
                     case 'id':
@@ -33,7 +32,6 @@
                 }
             }
 
-            //TP3-WEB2/api/persona?orderBy=cantidad&Direction=DESC
             if($Direction == 'DESC'){
                 $sql .= ' DESC';
             }
@@ -64,7 +62,7 @@
             return $persona;
         }
 
-        //TP3-WEB2/api/persona/:id
+        //TP3/api/persona/:id
         public function deletePersona($id){
             $sql = 'DELETE FROM persona WHERE id=?';
 

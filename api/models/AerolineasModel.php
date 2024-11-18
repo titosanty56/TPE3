@@ -7,25 +7,24 @@
         public function getAerolineas($Nombre = false, $orderBy = false, $Direction = false){
             $sql = 'SELECT * FROM `aerolinea`';
 
-            //TP3-WEB2/api/aerolinea?nombre=Aerolineas Argentina
-            if($Nombre){
-                $sql .= " WHERE `nombre` = ?";
+            //TP3-WEB2/api/aerolinea?Pais= Argentina
+            if($Pais){
+                $sql .= " WHERE `Pais` = ?";
             }
 
-            //TP3-WEB2/api/aerolinea?orderBy=cantidad
             if($orderBy){
                 switch($orderBy){
                     case 'id':
                         $sql .= ' ORDER BY `id`';
                         break;
-                    case 'nombre':
-                        $sql .= ' ORDER BY `nombre`';
+                    case 'Nombre':
+                        $sql .= ' ORDER BY `Nombre`';
                         break;
-                    case 'pais':
-                        $sql .= ' ORDER BY `pais`';
+                    case 'Pais':
+                        $sql .= ' ORDER BY `Pais`';
                         break;
-                    case 'fundacion':
-                        $sql .= ' ORDER BY `fundacion`';
+                    case 'Fundacion':
+                        $sql .= ' ORDER BY `Fundacion`';
                         break;
                     case 'servicios':
                         $sql .= ' ORDER BY `servicios`';
@@ -33,7 +32,6 @@
                 }
             }
 
-            //TP3-WEB2/api/fabrica?orderBy=cantidad&Direction=DESC
             if($Direction == 'DESC'){
                 $sql .= ' DESC';
             }
@@ -64,7 +62,7 @@
             return $aerolinea;
         }
 
-        //TP3-WEB2/api/aerolinea/:id
+        //TP3/api/aerolinea/:id
         public function deleteAerolinea($id){
             $sql = 'DELETE FROM aerolinea WHERE id=?';
 
