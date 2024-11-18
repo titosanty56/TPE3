@@ -2,7 +2,7 @@ PROYECTO: Agencia de viajes.
 
 Integrantes: Santiago Verga Pacali y Simon Marciante
 
-Descripcion: Esta API te permite consultar detalles sobre las Aerolineas y pasajeros apuntados, la idea del proyecto es que si un administrador esta logueado (no nos genera el token), pueda ademas de ver los detalles de las aerolineas y pasajeros, hacer cambios o agregar una nueva Aerolinea o un nuevo pasajero indicando (edad, destino, aerolinea en la que viaja).
+Descripcion: Esta API te permite consultar detalles sobre las Aerolineas y pasajeros apuntados, la idea del proyecto es que si un administrador esta logueado (no nos genera el token), pueda ademas de ver los detalles de las aerolineas y pasajeros, hacer cambios o agregar una nueva Aerolinea o un nuevo pasajero indicando (edad, destino, etc).
 
 URL EJEMPLO: ./api/endpoint/:ID/:subrecurso
 
