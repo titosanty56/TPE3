@@ -12,7 +12,7 @@
         }
 
         public function getAllAerolineas($req, $res){
-            //Filtrado por nombre
+            //Filtrado por pais
             $Pais = false;
             if(isset($req->query->Pais)){
                 $Pais = $req->query->Pais;
@@ -44,7 +44,7 @@
         
 
             //traigo aerolineas a la db
-            $aerolineas = $this->model->getAerolineas($Nombre, $orderBy, $Direction, $pagina, $items);
+            $aerolineas = $this->model->getAerolineas($Pais, $orderBy, $Direction, $pagina, $items);
 
             if(!$aerolineas){
                 return $this->view->response("No hay aerolineas para mostrar", 404);
@@ -87,13 +87,13 @@
                 return $this->view->response("No autorizado", 401);
             }
 
-            if(empty($req->body->nombre) || empty($req->body->pais) || empty($req->body->fundacion) || empty($req->body->servicios)){
+            if(empty($req->body->Nombre) || empty($req->body->Pais) || empty($req->body->Fundacion) || empty($req->body->servicios)){
                 return $this->view->response('Falta completar campos', 400);
             }
 
-            $nombre = $req->body->nombre;
-            $pais = $req->body->pais;
-            $fundacion= $req->body->fundacion;
+            $nombre = $req->body->Nombre;
+            $pais = $req->body->Pais;
+            $fundacion= $req->body->Fundacion;
             $servicios = $req->body->servicios;
 
             $id = $this->model->insertAerolinea($nombre,$pais,$fundacion,$servicios);
@@ -118,13 +118,13 @@
                 return $this->view->response("La aerolinea con el id=$id no existe", 404);
             }
 
-            if(empty($req->body->nombre) || empty($req->body->pais) || empty($req->body->fundacion) || empty($req->body->servicios)){
+            if(empty($req->body->Nombre) || empty($req->body->Pais) || empty($req->body->Fundacion) || empty($req->body->servicios)){
                 return $this->view->response('Falta completar campos', 400);
             }
 
-            $nombre = $req->body->nombre;
-            $pais= $req->body->pais;
-            $fundacion = $req->body->fundacion;
+            $nombre = $req->body->Nombre;
+            $pais= $req->body->Pais;
+            $fundacion = $req->body->Fundacion;
             $servicios = $req->body->servicios;
 
             $this->model->editar($id, $nombre, $pais, $fundacion, $servicios);

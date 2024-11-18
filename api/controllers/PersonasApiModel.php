@@ -34,13 +34,13 @@
             if(!$personas){
                 return $this->view->response("No hay Personas para mostrar", 404);
             }
-            //envio las fabricas a la vista
+            //envio las personas la vista
             return $this->view->response($personas);
         }
 
         public function getPersona($req, $res){
             //obtengo id de las personas desde la ruta
-            $id = $req->params->id;
+            $id = $req->params->id_persona;
             
             $persona = $this->model->getPersona($id);
             
@@ -56,7 +56,7 @@
                 return $this->view->response("No autorizado", 401);
             }
 
-            $id = $req->params->id;
+            $id = $req->params->id_persona;
 
             $persona = $this->model->getPersona($id);
             if(!$persona) {
@@ -72,14 +72,14 @@
                 return $this->view->response("No autorizado", 401);
             }
 
-            if(empty($req->body->nombre) || empty($req->body->edad) || empty($req->body->cantidad) || empty($req->body->destino)){
+            if(empty($req->body->Nombre) || empty($req->body->edad) || empty($req->body->Cantidad) || empty($req->body->Destino)){
                 return $this->view->response('Falta completar campos', 400);
             }
 
-            $nombre = $req->body->nombre;
+            $nombre = $req->body->Nombre;
             $edad = $req->body->edad;
-            $cantidad = $req->body->cantidad;
-            $destino = $req->body->destino;
+            $cantidad = $req->body->Cantidad;
+            $destino = $req->body->Destino;
 
             $id = $this->model->insertPersona($nombre,$edad,$cantidad,$destino);
 
@@ -96,21 +96,21 @@
                 return $this->view->response("No autorizado", 401);
             }
 
-            $id = $req->params->id;
+            $id = $req->params->id_persona;
 
             $persona = $this->model->getPersona($id);
             if(!$persona){
                 return $this->view->response("La persona con el id=$id no existe", 404);
             }
 
-            if(empty($req->body->nombre) || empty($req->body->edad) || empty($req->body->cantidad) || empty($req->body->destino)){
+            if(empty($req->body->Nombre) || empty($req->body->edad) || empty($req->body->Cantidad) || empty($req->body->Destino)){
                 return $this->view->response('Falta completar campos', 400);
             }
 
-            $nombre = $req->body->nombre;
+            $nombre = $req->body->Nombre;
             $edad = $req->body->edad;
-            $cantidad = $req->body->cantidad;
-            $destino = $req->body->destino;
+            $cantidad = $req->body->Cantidad;
+            $destino = $req->body->Destino;
 
             $this->model->editar($id, $nombre, $edad, $cantidad, $sdestino);
 

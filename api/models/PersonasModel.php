@@ -9,25 +9,25 @@
 
             //TP3-WEB2/api/persona?cantidad=2
             if($Cantidad){
-                $sql .= " WHERE `cantidad` = ?";
+                $sql .= " WHERE `Cantidad` = ?";
             }
 
             if($orderBy){
                 switch($orderBy){
-                    case 'id':
-                        $sql .= ' ORDER BY `id`';
+                    case 'id_persona':
+                        $sql .= ' ORDER BY `id_persona`';
                         break;
-                    case 'nombre':
-                        $sql .= ' ORDER BY `nombre`';
+                    case 'Nombre':
+                        $sql .= ' ORDER BY `Nombre`';
                         break;
                     case 'edad':
                         $sql .= ' ORDER BY `edad`';
                         break;
-                    case 'cantidad':
-                        $sql .= ' ORDER BY `cantidad`';
+                    case 'Cantidad':
+                        $sql .= ' ORDER BY `Cantidad`';
                         break;
-                    case 'destino':
-                        $sql .= ' ORDER BY `destino`';
+                    case 'Destino':
+                        $sql .= ' ORDER BY `Destino`';
                         break;
                 }
             }
@@ -52,7 +52,7 @@
         }
 
         public function getPersona($id){
-            $sql = 'SELECT * FROM persona WHERE id = ?';
+            $sql = 'SELECT * FROM persona WHERE id_persona = ?';
 
             $query = $this->db->prepare($sql);
             $query->execute([$id]);
@@ -64,7 +64,7 @@
 
         //TP3/api/persona/:id
         public function deletePersona($id){
-            $sql = 'DELETE FROM persona WHERE id=?';
+            $sql = 'DELETE FROM persona WHERE id_persona=?';
 
             $query = $this->db->prepare($sql);
             $query->execute([$id]);
@@ -82,7 +82,7 @@
         }
 
         public function editarPersona($id, $nombre, $edad, $cantidad, $destino){
-            $sql = 'UPDATE persona SET nombre = ?, edad = ?, cantidad = ?, destino = ? WHERE id = ?';
+            $sql = 'UPDATE persona SET nombre = ?, edad = ?, cantidad = ?, destino = ? WHERE id_persona = ?';
 
             $query = $this->db->prepare($sql);
             $query->execute([$id, $nombre, $edad, $cantidad, $destino]);

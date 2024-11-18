@@ -4,10 +4,10 @@
     class AerolineasModel extends Model{
 
 
-        public function getAerolineas($Nombre = false, $orderBy = false, $Direction = false){
+        public function getAerolineas($Pais = false, $orderBy = false, $Direction = false, $pagina = false, $items = false){
             $sql = 'SELECT * FROM `aerolinea`';
 
-            //TP3-WEB2/api/aerolinea?Pais= Argentina
+            //TP3/api/aerolinea?Pais= Argentina
             if($Pais){
                 $sql .= " WHERE `Pais` = ?";
             }
@@ -36,11 +36,19 @@
                 $sql .= ' DESC';
             }
 
+            if($items && $pagina){
+                if($items > 0 && $pagina > 0){
+                    $items = (int)$items;
+                    $pagina = (int)($pagina - 1) * $items;
+                    $sql.= " LIMIT $pagina,$items";
+                }
+            }
+
             //Ejecuto la consulta
             $query = $this->db->prepare($sql);
 
-            if($Nombre){
-                $query->execute([$Nombre]);
+            if($Pais){
+                $query->execute([$Pais]);
             }else{
                 $query->execute();
             }
@@ -71,7 +79,7 @@
         }
 
         public function insertAerolinea($nombre, $pais, $fundacion, $servicios){
-            $sql = 'INSERT INTO aerolinea(nombre, pais, fundacion, servicios) VALUES (?, ?, ?, ?)';
+            $sql = 'INSERT INTO aerolinea( Nombre, Pais, Fundacion, servicios) VALUES (?, ?, ?, ?)';
 
             $query = $this->db->prepare($sql);
             $query->execute([$nombre, $pais, $fundacion, $servicios]);
@@ -82,7 +90,7 @@
         }
 
         public function editarAerolinea($id, $nombre, $pais, $fundacion, $servicios){
-            $sql = 'UPDATE aerolinea SET nombre = ?, pais = ?, fundacion = ?, servicios = ? WHERE id = ?';
+            $sql = 'UPDATE aerolinea SET Nombre = ?, Pais = ?, Fundacion = ?, servicios = ? WHERE id = ?';
 
             $query = $this->db->prepare($sql);
             $query->execute([$id, $nombre, $pais, $fundacion, $servicios]);
